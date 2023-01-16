@@ -19,7 +19,8 @@ from . import views
 app_name = 'administrator'
 
 urlpatterns = [
-    path('home', views.home, name = 'home'),
+    path('home', views.home, name = 'home'), 
+    path('', views.home, name = 'home'), 
     path('profile', views.profile, name = 'profile'),
-
+    path('invoiceinfo', views.invoiveinfo, name = 'invoiceinfo')
 ]

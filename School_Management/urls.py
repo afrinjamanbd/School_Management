@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from administrator import views
+from administrator import views as administratorViews
+from schoolsite import views as schoolsiteViews
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('rule/', views.rules, name = 'rules'),
-    path('administrator/', include("administrator.urls")),
-    path('schoolsite/', include("schoolsite.urls")),
-    path('teachersite/', include("teachersite.urls")),   
+    path('admin/', admin.site.urls), #127.0.0.1:8000/admin
+    path('rule/studentrules/<int:a>', administratorViews.rules, name = 'rules'), #127.0.0.1:8000/rule/studentrules
+    path('administrator/<str:mystr>', include("administrator.urls")), #127.0.0.1:8000/administrator/dfbd/home  #127.0.0.1:8000/administrator/dfbd #127.0.0.1:8000/administrator/dfbd/profile #127.0.0.1:8000/administrator/dfbd/invoiceinfo
+    # path('schoolsite/', include("schoolsite.urls")),
+    path('facultynstaff/<slug:fs>',  schoolsiteViews.facultyStaff, {'settingvar':3})
+    # path('teachersite/', include("teachersite.urls")),   
 ]
+
+# 127.0.0.1:8000/facultynstaff/cdsj_ncs12-dvd
